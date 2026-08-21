@@ -8,7 +8,7 @@ from telegram.ext import (
     ContextTypes,
 )
 
-8729433457:AAETg6P9KcYBlaYZkIAyjxvYQYn-aDIIIyM = os.getenv(")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_ID = int(os.getenv("ADMIN_ID", "0"))
 
 
@@ -25,7 +25,7 @@ def menu(user_id):
         ],
     ]
 
-    if user_id == 7657455283:
+    if user_id == ADMIN_ID:
         buttons.append([
             InlineKeyboardButton("⚙️ Admin panel", callback_data="admin")
         ])
@@ -129,12 +129,12 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def main():
-    if not 8729433457:AAETg6P9KcYBlaYZkIAyjxvYQYn-aDIIIyM:
-        raise RuntimeError("8729433457:AAETg6P9KcYBlaYZkIAyjxvYQYn-aDIIIyM Environment Variable topilmadi.")
+    if not BOT_TOKEN:
+        raise RuntimeError("BOT_TOKEN Environment Variable topilmadi.")
 
     print("🤖 Bot ishga tushmoqda...")
 
-    app = Application.builder().token(8729433457:AAETg6P9KcYBlaYZkIAyjxvYQYn-aDIIIyM).build()
+    app = Application.builder().token(BOT_TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CallbackQueryHandler(button))
